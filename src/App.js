@@ -15,10 +15,13 @@ class App extends Component {
  };
 }
 
-handleDelete = (descriptionId) => {
-  const deleteToDo = this.state.deleteToDo.filter(e => e.description !== descriptionId);
-  this.setState({ description: deleteToDo });
-};
+deleteToDo = (descriptionId) => {
+   return this.state.todos.filter(e => e.description !== descriptionId)
+}
+
+handleDelete = (descriptionID) => {
+   this.setState({todos: this.deleteToDo(descriptionID)})
+}
 
 handleChange(e) {
   this.setState({ newTodoDescription: e.target.value })
