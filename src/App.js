@@ -15,6 +15,11 @@ class App extends Component {
  };
 }
 
+handleDelete = (descriptionId) => {
+  const deleteToDo = this.state.deleteToDo.filter(c => c.description !== descriptionId);
+  this.setState({ deleteToDo });
+};
+
 handleChange(e) {
   this.setState({ newTodoDescription: e.target.value })
 }
@@ -38,7 +43,7 @@ toggleComplete(index) {
       <div className="App">
       <ul>
       { this.state.todos.map( (todo, index) =>
-             <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ this.toggleComplete } />
+             <ToDo key={ index } description={ todo.description } onDelete={this.handleDelete} isCompleted={ todo.isCompleted } toggleComplete={ this.toggleComplete } />
       )}
       </ul>
          <form onSubmit={ (e) => this.handleSubmit(e) }>
